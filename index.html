@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Sehar 💖</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ffd6e0,#0B6E4F);
+color:white;
+overflow-x:hidden;
+cursor:none;
+}
+
+/* ===== HEART CURSOR ===== */
+.cursor{
+position:fixed;
+pointer-events:none;
+z-index:9999;
+transform:translate(-50%,-50%);
+}
+
+.cursor::before{
+content:"💖";
+font-size:18px;
+animation:pulse 0.6s infinite alternate;
+}
+
+@keyframes pulse{
+from{transform:scale(1);}
+to{transform:scale(1.3);}
+}
+
+/* ===== HEART BURST ===== */
+.heart{
+position:fixed;
+font-size:14px;
+pointer-events:none;
+animation:heartFloat 1s ease-out forwards;
+}
+
+@keyframes heartFloat{
+0%{opacity:1;transform:translate(-50%,-50%) scale(1);}
+100%{opacity:0;transform:translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.8);}
+}
+
+/* ===== FIREWORK CANVAS ===== */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* ===== HEADER ===== */
+header{
+text-align:center;
+padding:40px 20px;
+}
+
+h1{
+font-size:45px;
+text-shadow:0 0 15px pink;
+}
+
+#typewriter{
+margin-top:10px;
+color:#ffffffcc;
+}
+
+/* ===== BALLOONS ===== */
+.balloon{
+position:absolute;
+width:35px;
+height:45px;
+border-radius:50%;
+animation:float 12s linear infinite;
+}
+
+.balloon::after{
+content:'';
+width:2px;
+height:40px;
+background:white;
+position:absolute;
+top:45px;
+left:50%;
+}
+
+.b1{background:#ff4d6d;left:10%;}
+.b2{background:#ffd166;left:30%;animation-delay:2s;}
+.b3{background:#06d6a0;left:60%;animation-delay:4s;}
+.b4{background:#ef476f;left:80%;animation-delay:6s;}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-200px);}
+}
+
+/* ===== CARDS ===== */
+.container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+padding:30px;
+}
+
+.card{
+width:170px;
+height:210px;
+border-radius:15px;
+overflow:hidden;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.card img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* ===== POPUP ===== */
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(8px);
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+.popup-content{
+background:white;
+color:#0B6E4F;
+padding:20px;
+border-radius:15px;
+max-width:300px;
+text-align:center;
+animation:pop 0.4s ease;
+}
+
+.popup img{
+width:100%;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+@keyframes pop{
+from{transform:scale(0.5);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+/* ===== CAKE ===== */
+.cake{
+width:240px;
+margin:40px auto 20px;
+position:relative;
+}
+
+.cake::before{
+content:'';
+position:absolute;
+bottom:-18px;
+left:50%;
+transform:translateX(-50%);
+width:280px;
+height:22px;
+background:radial-gradient(circle at 50% 0, #ffe0f0 0%, #ffb8d0 45%, #d46a7d 100%);
+border-radius:50% / 100%;
+box-shadow:0 8px 18px rgba(0,0,0,0.25);
+z-index:-1;
+}
+
+.layer{
+height:44px;
+background:linear-gradient(180deg,#ffd6e0,#ff8fa3);
+margin:8px 0;
+border-radius:18px;
+position:relative;
+overflow:hidden;
+box-shadow:inset 0 6px 12px rgba(255,255,255,0.45), 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.layer::before{
+content:'';
+position:absolute;
+top:-10px;
+left:10%;
+width:80%;
+height:22px;
+background:radial-gradient(circle at 50% 0, rgba(255,255,255,0.9), rgba(255,255,255,0) 70%);
+border-radius:50% 50% 0 0;
+}
+
+.layer:nth-child(1){
+background:linear-gradient(180deg,#ffee93,#ffc94d);
+}
+
+.layer:nth-child(2){
+background:linear-gradient(180deg,#ffb3d6,#ff6ba4);
+}
+
+.layer:nth-child(3){
+background:linear-gradient(180deg,#d7b3ff,#b78fff);
+}
+
+.layer::after{
+content:'';
+position:absolute;
+top:22px;
+left:12%;
+width:76%;
+height:12px;
+background:
+radial-gradient(circle at 10% 40%, #ffffff 2px, transparent 0) 0 0/8% 100%,
+radial-gradient(circle at 30% 30%, #ffea00 2px, transparent 0) 0 0/8% 100%,
+radial-gradient(circle at 50% 50%, #ff7fcc 2px, transparent 0) 0 0/8% 100%,
+radial-gradient(circle at 70% 20%, #95ffd6 2px, transparent 0) 0 0/8% 100%,
+radial-gradient(circle at 90% 45%, #ffffff 2px, transparent 0) 0 0/8% 100%;
+pointer-events:none;
+}
+
+.candle{
+width:14px;
+height:42px;
+background:linear-gradient(180deg,#ffe7c3,#ff6b9a);
+position:absolute;
+top:-42px;
+left:50%;
+transform:translateX(-50%);
+border-radius:8px;
+box-shadow:0 0 12px rgba(255,155,186,0.7);
+}
+
+.candle::before{
+content:'';
+position:absolute;
+width:4px;
+height:10px;
+background:#3b1c12;
+top:-10px;
+left:50%;
+transform:translateX(-50%);
+border-radius:2px;
+}
+
+.flame{
+width:18px;
+height:26px;
+background:radial-gradient(circle at 50% 30%, #fff9a6 0%, #ffd500 25%, rgba(255,126,0,0.95) 60%, rgba(255,126,0,0) 100%);
+border-radius:50% 50% 40% 40%;
+position:absolute;
+top:-70px;
+left:50%;
+transform:translateX(-50%);
+box-shadow:0 0 20px rgba(255,215,80,0.75);
+animation:flameFlicker 0.25s infinite;
+}
+
+.flame::before{
+content:'';
+position:absolute;
+width:8px;
+height:14px;
+background:rgba(255,255,255,0.9);
+top:4px;
+left:50%;
+transform:translateX(-50%);
+border-radius:50%;
+}
+
+@keyframes flameFlicker{
+0%{transform:translateX(-50%) scale(1);}
+50%{transform:translateX(-50%) scale(0.95);} 
+100%{transform:translateX(-50%) scale(1.05);}
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+h1{font-size:30px;}
+.card{width:140px;height:180px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="cursor"></div>
+<canvas id="fireworks"></canvas>
+
+<!-- BALLOONS -->
+<div class="balloon b1"></div>
+<div class="balloon b2"></div>
+<div class="balloon b3"></div>
+<div class="balloon b4"></div>
+
+<header>
+<h1>🎉 Happy Birthday 🎉</h1>
+<div id="typewriter"></div>
+</header>
+
+<!-- CARDS -->
+<div class="container">
+<div class="card" onclick="openCard('1 (1).jpeg','You make ordinary days feel special without even trying 💖')"><img src="1 (1).jpeg" alt="Birthday card 1"></div>
+<div class="card" onclick="openCard('1 (2).jpeg','I hope your smile stays this bright forever 🌸')"><img src="1 (2).jpeg" alt="Birthday card 2"></div>
+<div class="card" onclick="openCard('1 (3).jpeg','Some people just feel like home — you are one of them 💕')"><img src="1 (3).jpeg" alt="Birthday card 3"></div>
+<div class="card" onclick="openCard('1 (4).jpeg','May your life always stay soft and beautiful 🌷')"><img src="1 (4).jpeg" alt="Birthday card 4"></div>
+</div>
+
+<!-- CAKE -->
+<div class="cake">
+<div class="layer"></div>
+<div class="layer"></div>
+<div class="layer"></div>
+<div class="candle"></div>
+<div class="flame"></div>
+</div>
+
+<footer style="align-items: center;">Developed with 💖 just for Aema ki jan By her own Nikamma </footer>
+
+
+<!-- POPUP -->
+<div class="popup" id="popup" onclick="closeCard()">
+<div class="popup-content">
+<img id="popupImg">
+<p id="popupText"></p>
+</div>
+</div>
+
+<script>
+
+/* CURSOR */
+const cursor=document.querySelector(".cursor");
+document.addEventListener("mousemove",(e)=>{
+cursor.style.left=e.pageX+"px";
+cursor.style.top=e.pageY+"px";
+});
+
+/* HEART BURST */
+document.addEventListener("click",(e)=>{
+for(let i=0;i<8;i++){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+
+let x=(Math.random()-0.5)*100;
+let y=(Math.random()-0.5)*100;
+
+heart.style.left=e.pageX+"px";
+heart.style.top=e.pageY+"px";
+
+heart.style.setProperty("--x",x+"px");
+heart.style.setProperty("--y",y+"px");
+
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),1000);
+}
+});
+
+/* TYPEWRITER */
+const text="Sehar ❤️ Aema ki sbse pyari jan...💖";
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("typewriter").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,50);
+}
+}
+type();
+
+/* POPUP */
+const popup = document.getElementById("popup");
+const popupImg = document.getElementById("popupImg");
+const popupText = document.getElementById("popupText");
+
+function openCard(img,text){
+popup.style.display="flex";
+popupImg.src=img;
+popupText.innerHTML=text;
+}
+function closeCard(){
+popup.style.display="none";
+}
+
+/* FIREWORKS */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+function Particle(x,y){
+this.x=x;
+this.y=y;
+this.radius=Math.random()*3+2;
+this.color=`hsl(${Math.random()*360},100%,60%)`;
+this.speedX=(Math.random()-0.5)*6;
+this.speedY=(Math.random()-0.5)*6;
+this.life=100;
+}
+
+Particle.prototype.update=function(){
+this.x+=this.speedX;
+this.y+=this.speedY;
+this.life--;
+}
+
+Particle.prototype.draw=function(){
+ctx.beginPath();
+ctx.fillStyle=this.color;
+ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+ctx.fill();
+}
+
+function createFirework(){
+let x=Math.random()*canvas.width;
+let y=Math.random()*canvas.height/2;
+for(let i=0;i<60;i++){
+particles.push(new Particle(x,y));
+}
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach((p,i)=>{
+p.update();
+p.draw();
+if(p.life<=0)particles.splice(i,1);
+});
+
+requestAnimationFrame(animate);
+}
+
+setInterval(createFirework,1200);
+animate();
+
+window.addEventListener("resize",()=>{
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+});
+</script>
+
+</body>
+</html>
